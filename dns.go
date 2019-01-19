@@ -44,8 +44,8 @@ func generateServerConfig() dnsforward.ServerConfig {
 	log.Println("DNS Binding if:ip ", config.DNS.BindInterface + ":" + externalIpAddr)
 
 	newconfig := dnsforward.ServerConfig{
-		UDPListenAddr:   &net.UDPAddr{IP: net.ParseIP(externalIpAddr), Port: config.DNS.Port},
-		TCPListenAddr:   &net.TCPAddr{IP: net.ParseIP(externalIpAddr), Port: config.DNS.Port},
+		UDPListenAddr:   &net.UDPAddr{IP: net.ParseIP(config.DNS.BindHost), Port: config.DNS.Port},
+		TCPListenAddr:   &net.TCPAddr{IP: net.ParseIP(config.DNS.BindHost), Port: config.DNS.Port},
 		FilteringConfig: config.DNS.FilteringConfig,
 		Filters:         filters,
 	}
